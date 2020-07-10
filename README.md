@@ -1,4 +1,4 @@
-# nerdbase
+# Geekbase
 A simple database app that allows users to store wishlists and keep inventory of different media, such as games, movies, series, books, collectibles and more.
 
 ## Feature list

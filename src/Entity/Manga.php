@@ -35,7 +35,7 @@ class Manga
     /**
      * @ORM\ManyToOne(targetEntity=Condition::class, inversedBy="mangas")
      */
-    private $condition_id;
+    private $condition;
 
     /**
      * @ORM\Column(type="string", length=13, nullable=true)
@@ -95,12 +95,12 @@ class Manga
 
     public function getCondition(): ?Condition
     {
-        return $this->condition_id;
+        return $this->condition;
     }
 
     public function setCondition(?Condition $condition): self
     {
-        $this->condition_id = $condition;
+        $this->condition = $condition;
 
         return $this;
     }

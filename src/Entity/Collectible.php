@@ -27,7 +27,7 @@ class Collectible
     /**
      * @ORM\ManyToOne(targetEntity=Condition::class, inversedBy="collectibles")
      */
-    private $condition_id;
+    private $condition;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -75,14 +75,14 @@ class Collectible
         return $this;
     }
 
-    public function getConditionId(): ?Condition
+    public function getCondition(): ?Condition
     {
-        return $this->condition_id;
+        return $this->condition;
     }
 
-    public function setConditionId(?Condition $condition): self
+    public function setCondition(?Condition $condition): self
     {
-        $this->condition_id = $condition;
+        $this->condition = $condition;
 
         return $this;
     }

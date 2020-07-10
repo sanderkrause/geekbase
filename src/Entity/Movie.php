@@ -42,12 +42,11 @@ class Movie
     /**
      * @ORM\ManyToOne(targetEntity=Condition::class, inversedBy="movies")
      */
-    private $condition_id;
+    private $condition;
 
     public function __construct()
     {
         $this->genre = new ArrayCollection();
-        $this->condition_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,28 +116,14 @@ class Movie
         return $this;
     }
 
-    /**
-     * @return Collection|Condition[]
-     */
-    public function getCondition(): Collection
+    public function getCondition(): ?Condition
     {
-        return $this->condition_id;
+        return $this->condition;
     }
 
-    public function addCondition(Condition $condition): self
+    public function setCondition(?Condition $condition): self
     {
-        if (!$this->condition_id->contains($condition)) {
-            $this->condition_id[] = $condition;
-        }
-
-        return $this;
-    }
-
-    public function removeCondition(Condition $condition): self
-    {
-        if ($this->condition_id->contains($condition)) {
-            $this->condition_id->removeElement($condition);
-        }
+        $this->condition = $condition;
 
         return $this;
     }

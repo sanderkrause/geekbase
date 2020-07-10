@@ -320,7 +320,7 @@ class Condition
     {
         if (!$this->collectibles->contains($collectible)) {
             $this->collectibles[] = $collectible;
-            $collectible->setConditionId($this);
+            $collectible->setCondition($this);
         }
 
         return $this;
@@ -331,8 +331,8 @@ class Condition
         if ($this->collectibles->contains($collectible)) {
             $this->collectibles->removeElement($collectible);
             // set the owning side to null (unless already changed)
-            if ($collectible->getConditionId() === $this) {
-                $collectible->setConditionId(null);
+            if ($collectible->getCondition() === $this) {
+                $collectible->setCondition(null);
             }
         }
 

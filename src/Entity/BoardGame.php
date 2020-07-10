@@ -35,7 +35,7 @@ class BoardGame
     /**
      * @ORM\ManyToOne(targetEntity=Condition::class, inversedBy="boardGames")
      */
-    private $condition_id;
+    private $condition;
 
     public function getId(): ?int
     {
@@ -80,12 +80,12 @@ class BoardGame
 
     public function getCondition(): ?Condition
     {
-        return $this->condition_id;
+        return $this->condition;
     }
 
     public function setCondition(?Condition $condition): self
     {
-        $this->condition_id = $condition;
+        $this->condition = $condition;
 
         return $this;
     }
