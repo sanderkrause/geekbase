@@ -31,6 +31,7 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * @Route("/logout", name="app_logout")
      * @param UrlGeneratorInterface $urlGenerator
      * @return RedirectResponse
      */
