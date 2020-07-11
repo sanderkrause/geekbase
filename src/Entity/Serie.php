@@ -49,6 +49,12 @@ class Serie
      */
     private $condition;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="series")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->genre = new ArrayCollection();
@@ -141,6 +147,18 @@ class Serie
     public function setCondition(?Condition $condition): self
     {
         $this->condition = $condition;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

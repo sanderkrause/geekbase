@@ -59,6 +59,12 @@ class Game
      */
     private $platform;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="games")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->genre = new ArrayCollection();
@@ -190,6 +196,18 @@ class Game
         if ($this->platform->contains($platform)) {
             $this->platform->removeElement($platform);
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
