@@ -39,6 +39,12 @@ class Collectible
      */
     private $boxed;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="collectibles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->type = new ArrayCollection();
@@ -107,6 +113,18 @@ class Collectible
     public function setBoxed(bool $boxed): self
     {
         $this->boxed = $boxed;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

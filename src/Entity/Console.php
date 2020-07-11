@@ -52,6 +52,12 @@ class Console
      */
     private $barcode;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="consoles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +143,18 @@ class Console
     public function setBarcode(?string $barcode): self
     {
         $this->barcode = $barcode;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
