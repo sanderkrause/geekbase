@@ -24,6 +24,8 @@ class HomeController extends AbstractController
      */
     public function dashboard(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+
         return $this->render('home/dashboard.html.twig');
     }
 }
