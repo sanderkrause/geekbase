@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=GenreRepository::class)
  */
-class Genre
+class Genre implements \Stringable
 {
     /**
      * @ORM\Id()
@@ -219,5 +219,10 @@ class Genre
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName() ?? '';
     }
 }
