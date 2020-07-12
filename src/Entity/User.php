@@ -88,6 +88,11 @@ class User implements UserInterface
      */
     private $series;
 
+    /**
+     * @ORM\OneToOne(targetEntity=PrivacySetting::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $privacySetting;
+
     public function __construct()
     {
         $this->boardGames = new ArrayCollection();
@@ -440,6 +445,23 @@ class User implements UserInterface
             if ($series->getUser() === $this) {
                 $series->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getPrivacySetting(): ?PrivacySetting
+    {
+        return $this->privacySetting;
+    }
+
+    public function setPrivacySetting(PrivacySetting $privacySetting): self
+    {
+        $this->privacySetting = $privacySetting;
+
+        // set the owning side of the relation if necessary
+        if ($privacySetting->getUser() !== $this) {
+            $privacySetting->setUser($this);
         }
 
         return $this;
