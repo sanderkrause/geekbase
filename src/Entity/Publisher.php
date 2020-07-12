@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=PublisherRepository::class)
  */
-class Publisher
+class Publisher implements \Stringable
 {
     /**
      * @ORM\Id()
@@ -171,5 +171,10 @@ class Publisher
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName() ?? '';
     }
 }

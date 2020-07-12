@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=PlatformRepository::class)
  */
-class Platform
+class Platform implements \Stringable
 {
     /**
      * @ORM\Id()
@@ -77,5 +77,10 @@ class Platform
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName() ?? '';
     }
 }

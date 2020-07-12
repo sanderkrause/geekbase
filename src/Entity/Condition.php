@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass=ConditionRepository::class)
  * @ORM\Table(name="`condition`")
  */
-class Condition
+class Condition implements \Stringable
 {
     /**
      * @ORM\Id()
@@ -26,42 +26,42 @@ class Condition
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Movie::class, mappedBy="condition_id")
+     * @ORM\OneToMany(targetEntity=Movie::class, mappedBy="condition")
      */
     private $movies;
 
     /**
-     * @ORM\OneToMany(targetEntity=Serie::class, mappedBy="condition_id")
+     * @ORM\OneToMany(targetEntity=Serie::class, mappedBy="condition")
      */
     private $series;
 
     /**
-     * @ORM\OneToMany(targetEntity=Console::class, mappedBy="condition_id")
+     * @ORM\OneToMany(targetEntity=Console::class, mappedBy="condition")
      */
     private $consoles;
 
     /**
-     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="condition_id")
+     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="condition")
      */
     private $books;
 
     /**
-     * @ORM\OneToMany(targetEntity=BoardGame::class, mappedBy="condition_id")
+     * @ORM\OneToMany(targetEntity=BoardGame::class, mappedBy="condition")
      */
     private $boardGames;
 
     /**
-     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="condition_id")
+     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="condition")
      */
     private $games;
 
     /**
-     * @ORM\OneToMany(targetEntity=Manga::class, mappedBy="condition_id")
+     * @ORM\OneToMany(targetEntity=Manga::class, mappedBy="condition")
      */
     private $mangas;
 
     /**
-     * @ORM\OneToMany(targetEntity=Collectible::class, mappedBy="condition_id")
+     * @ORM\OneToMany(targetEntity=Collectible::class, mappedBy="condition")
      */
     private $collectibles;
 
@@ -337,5 +337,10 @@ class Condition
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName() ?? '';
     }
 }
