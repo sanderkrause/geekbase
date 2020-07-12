@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <h1 class="h3 mb-2 text-gray-800">Your game collection</h1>
+
+    <div class="card shadow mb-4">
+{#        <div class="card-header py-3">#}
+{#            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>#}
+{#        </div>#}
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Publisher</th>
+                        <th>Release date</th>
+                        <th>Platform</th>
+                        <th>Special Edition?</th>
+                        <th>Condition</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Publisher</th>
+                        <th>Release date</th>
+                        <th>Platform</th>
+                        <th>Special Edition?</th>
+                        <th>Condition</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for game in games %}
+                        <tr>
+                            <td>{{ game.title }}</td>
+                            <td>{{ game.genre|join(', ') }}</td>
+                            <td>{{ game.publisher }}</td>
+                            <td>{{ game.publishingDate|date('Y-m-d') }}</td>
+                            <td>{{ game.platform|join(', ') }}</td>
+                            <td>
+                                {% if game.specialEdition %}
+                                    {{ game.typeSpecialEdition }}
+                                {% else %}
+                                    No
+                                {% endif %}
+                            </td>
+                            <td>{{ game.condition }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
