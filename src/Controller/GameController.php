@@ -25,16 +25,18 @@ class GameController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
         $numGames = $gameRepository->countUserGames($user);
-        $numSpecialEditions = $gameRepository->countSpecialEditions($user);
-        $percentSpecialEditions = round(($numSpecialEditions / $numGames) * 100);
-        $numGenres = $gameRepository->countUniqueGenres($user);
+        if ($numGames > 0) {
+            $numSpecialEditions = $gameRepository->countSpecialEditions($user);
+            $percentSpecialEditions = round(($numSpecialEditions / $numGames) * 100);
+            $numGenres = $gameRepository->countUniqueGenres($user);
+        }
 
         return $this->render('game/index.html.twig', [
             'games' => $user->getGames(),
             'numGames' => $numGames,
-            'numSpecialEditions' => $numSpecialEditions,
-            'percentSpecialEditions' => $percentSpecialEditions,
-            'numGenres' => $numGenres,
+            'numSpecialEditions' => $numSpecialEditions ?? 0,
+            'percentSpecialEditions' => $percentSpecialEditions ?? 0,
+            'numGenres' => $numGenres ?? 0,
         ]);
     }
 
