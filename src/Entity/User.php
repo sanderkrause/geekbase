@@ -105,6 +105,15 @@ class User implements UserInterface
         $this->series = new ArrayCollection();
     }
 
+    /**
+     * Returns the gravatar-compatible MD5 hash of the user's e-mail address
+     * @return string
+     */
+    public function getGravatar(): string
+    {
+        return md5(strtolower(trim($this->getEmail())));
+    }
+
     public function getId(): ?int
     {
         return $this->id;
