@@ -1,0 +1,201 @@
+$dark-mode-0: #121212;
+$dark-mode-1: #232323;
+$dark-mode-2: #323232;
+$dark-mode-3: #383838;
+$dark-mode-4: #424242;
+$dark-mode-5: #484848;
+$dark-mode-6: #525252;
+
+$dark-mode-text-active: rgba(255, 255, 255, 1);
+$dark-mode-text: rgba(255, 255, 255, 0.6);
+
+$dark-mode-background-active: rgba(48, 48, 48, 0.9);
+$dark-mode-background-list: rgba(52, 52, 52, 0.9);
+
+$pastel-purple: #b19cd9;
+$border-pastel-purple: #83749a;
+
+.dark-mode #wrapper {
+  // Sidebar dark mode overrides
+  .sidebar {
+    background-color: $dark-mode-0;
+    background-image: none;
+
+    .nav-item {
+      .collapsing {
+        .collapse-inner {
+          background-color: $dark-mode-1 !important;
+        }
+      }
+
+      .collapse {
+        .collapse-inner {
+          background-color: $dark-mode-1 !important;
+
+          .active {
+            background-color: $dark-mode-background-active;
+            color: $dark-mode-text-active !important;
+          }
+
+          .collapse-item {
+            color: $dark-mode-text-active !important;
+          }
+
+          :hover {
+            background-color: $dark-mode-background-list;
+          }
+        }
+      }
+    }
+  }
+
+  // Content dark mode overrides
+  #content-wrapper {
+    #content {
+      background-color: $dark-mode-2;
+
+      // Topbar dark mode overrides
+      .topbar {
+        background-color: $dark-mode-1 !important;
+
+        // Search bar
+        form > div {
+          input {
+            background-color: $dark-mode-4 !important;
+            color: $dark-mode-text-active !important;
+          }
+
+          .form-control:focus {
+            border: 1px solid $border-pastel-purple !important;
+          }
+
+          .input-group-append .btn {
+            background-color: $pastel-purple;
+            border-color: $border-pastel-purple;
+          }
+        }
+
+        // Right side of the topbar
+        .navbar-nav {
+
+          // Notification dropdown
+          .dropdown .dropdown-list {
+            .dropdown-header {
+              background-color: $pastel-purple;
+              border: 1px solid $border-pastel-purple;
+            }
+
+            .dropdown-item {
+              background-color: $dark-mode-2;
+              border-left: 1px solid $border-pastel-purple;
+              border-right: 1px solid $border-pastel-purple;
+              border-bottom: 1px solid $border-pastel-purple;
+              color: $dark-mode-text;
+            }
+          }
+
+          // User dropdown
+          .nav-item {
+            .nav-link span {
+              color: $dark-mode-text-active !important;
+            }
+
+            .dropdown-menu-right {
+              background-color: $dark-mode-1;
+              border: 1px solid $border-pastel-purple;
+
+              .dropdown-item {
+                background-color: $dark-mode-1;
+                color: $dark-mode-text-active;
+              }
+            }
+          }
+        }
+
+      }
+
+      .container-fluid {
+        h1 {
+          color: $pastel-purple !important;
+        }
+
+        // Add game form ( and probably other add forms )
+        .card {
+          .card-header {
+            background-color: $pastel-purple;
+            h6 {
+              color: $dark-mode-text !important;
+            }
+          }
+
+          .card-body {
+            form > div > .form-group {
+              label {
+                color: $dark-mode-text !important;
+              }
+              legend {
+                color: $dark-mode-text !important;
+              }
+
+              div {
+                input, select {
+                  background-color: $dark-mode-6;
+                  border-color: $dark-mode-5;
+                  color: $dark-mode-text !important;
+                }
+                select > option:checked {
+                  background-color: $dark-mode-5 !important;
+                }
+              }
+            }
+          }
+        }
+
+        // Games overview ( and probably other overview pages )
+        .row > div > .card {
+          background-color: $dark-mode-3;
+          border: none;
+
+          .card-body > .row > .col {
+            div {
+              color: $pastel-purple !important;
+            }
+
+            div > .btn {
+              background-color: $pastel-purple;
+              border: $border-pastel-purple;
+            }
+          }
+        }
+      }
+
+      .card {
+        background-color: $dark-mode-3;
+        border: none;
+
+        .card-body > div > table {
+          thead {
+            tr > th {
+              background-color: $pastel-purple !important;
+              border-color: $border-pastel-purple;
+            }
+          }
+
+          tbody {
+            tr {
+              background-color: $dark-mode-5;
+              color: $dark-mode-text;
+              td {
+                border-color: $border-pastel-purple;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .sticky-footer {
+    background-color: $dark-mode-2 !important;
+  }
+}
