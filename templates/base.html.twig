@@ -20,7 +20,7 @@
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
-<body id="page-top">
+<body id="page-top" class="{% if is_granted('IS_AUTHENTICATED_REMEMBERED') and app.user.userSetting.darkMode %}dark-mode{% endif %}">
 
 {% block body %}
 

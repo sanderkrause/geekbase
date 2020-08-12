@@ -93,6 +93,11 @@ class User implements UserInterface
      */
     private $privacySetting;
 
+    /**
+     * @ORM\OneToOne(targetEntity=UserSetting::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $userSetting;
+
     public function __construct()
     {
         $this->boardGames = new ArrayCollection();
@@ -103,6 +108,15 @@ class User implements UserInterface
         $this->mangas = new ArrayCollection();
         $this->movies = new ArrayCollection();
         $this->series = new ArrayCollection();
+    }
+
+    /**
+     * Returns the gravatar-compatible MD5 hash of the user's e-mail address
+     * @return string
+     */
+    public function getGravatar(): string
+    {
+        return md5(strtolower(trim($this->getEmail())));
     }
 
     public function getId(): ?int
@@ -462,6 +476,23 @@ class User implements UserInterface
         // set the owning side of the relation if necessary
         if ($privacySetting->getUser() !== $this) {
             $privacySetting->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function getUserSetting(): ?UserSetting
+    {
+        return $this->userSetting;
+    }
+
+    public function setUserSetting(UserSetting $userSetting): self
+    {
+        $this->userSetting = $userSetting;
+
+        // set the owning side of the relation if necessary
+        if ($userSetting->getUser() !== $this) {
+            $userSetting->setUser($this);
         }
 
         return $this;
