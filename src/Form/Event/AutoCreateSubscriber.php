@@ -40,19 +40,32 @@ class AutoCreateSubscriber implements EventSubscriberInterface
      */
     public function handle(FormEvent $event): void
     {
-        $form = $event->getForm();
         $data = $event->getData();
 
         if (!ctype_digit($data)) {
-            $entityClass = $this->entityClass;
-            /** @var AutoCreateable $entity */
-            $entity = new $entityClass();
-            $entity->setName($data);
-            $this->entityManager->persist($entity);
-            $this->entityManager->flush();
-            $this->entityManager->refresh($entity);
-            $form->setData($entity);
-            $event->setData((string)$entity->getId());
+            if (is_string($data)) {
+                $data = $this->createEntity($data);
+            } elseif (is_array($data)) {
+                foreach ($data as $key => $item) {
+                    if (!ctype_digit($item)) {
+                        $data[$key] = $this->createEntity($item)->getId();
+                    }
+                }
+            }
+            $event->setData($data);
         }
+    }
+
+    public function createEntity(string $name): AutoCreateable
+    {
+        $entityClass = $this->entityClass;
+        /** @var AutoCreateable $entity */
+        $entity = new $entityClass();
+        $entity->setName($name);
+        $this->entityManager->persist($entity);
+        // @todo avoid flushing and refreshing in a loop (outside this function)
+        $this->entityManager->flush();
+        $this->entityManager->refresh($entity);
+        return $entity;
     }
 }

@@ -54,9 +54,6 @@ class AutoCompleteType extends AbstractType
             'autocomplete_callable' => null,
         ]);
 
-        $resolver->setRequired('fieldName');
-        $resolver->setAllowedTypes('fieldName', 'string');
-
         $resolver->addNormalizer('class', static function (Options $options, $value) {
             if (!class_exists($value, true) || !in_array(AutoCreateable::class, class_implements($value, true), true)) {
                 throw new InvalidConfigurationException("${value} does not implement " . AutoCreateable::class);
