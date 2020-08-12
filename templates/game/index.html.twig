@@ -97,6 +97,7 @@
                         <th>Platform</th>
                         <th>Special Edition?</th>
                         <th>Condition</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
 {#                    <tfoot>#}
@@ -126,6 +127,11 @@
                                 {% endif %}
                             </td>
                             <td>{{ game.condition }}</td>
+                            <td>
+                                <a href="{{ path('game_edit', {game:game.id}) }}" class="btn btn-secondary">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

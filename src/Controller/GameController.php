@@ -60,7 +60,29 @@ class GameController extends AbstractController
             return $this->redirectToRoute('game_overview');
         }
 
-        return $this->render('game/add.html.twig', [
+        return $this->render('form.html.twig', [
+            'gameForm' => $gameForm->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/games/edit/{game}", name="game_edit")
+     * @param Request $request
+     * @param Game $game
+     * @return Response
+     */
+    public function edit(Request $request, Game $game): Response
+    {
+        $this->denyAccessUnlessGranted(AuthenticatedVoter::IS_AUTHENTICATED_REMEMBERED);
+        $gameForm = $this->createForm(GameFormType::class, $game);
+        $gameForm->handleRequest($request);
+        if ($gameForm->isSubmitted() && $gameForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('game_overview');
+        }
+
+        return $this->render('form.html.twig', [
             'gameForm' => $gameForm->createView(),
         ]);
     }
