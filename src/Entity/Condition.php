@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass=ConditionRepository::class)
  * @ORM\Table(name="`condition`")
  */
-class Condition implements \Stringable
+class Condition implements \Stringable, AutoCreateable
 {
     /**
      * @ORM\Id()

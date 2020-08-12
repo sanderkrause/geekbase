@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=PublisherRepository::class)
  */
-class Publisher implements \Stringable
+class Publisher implements \Stringable, AutoCreateable
 {
     /**
      * @ORM\Id()
