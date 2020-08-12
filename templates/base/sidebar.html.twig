@@ -1,0 +1,108 @@
+{% block nav %}
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('home') }}">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-gamepad"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">GeekBase&trade;</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('dashboard') }}">
+                <i class="fa fa-fw fa-home"></i>
+                <span>Dashboard</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Collection
+        </div>
+
+        <!-- Nav Item - Collection Collapse Menu -->
+        <li class="nav-item {% if app.request.get('_route') in ['game_overview', 'movie_overview', 'serie_overview', 'manga_overview', 'console_overview', 'collectible_overview'] %}active{% endif %}">
+            <a class="nav-link show" href="#" data-toggle="collapse" data-target="#collapseCollection"
+               aria-expanded="true" aria-controls="collapseCollection">
+                <i class="fas fa-fw fa-tv"></i>
+                <span>Media</span>
+            </a>
+            <div id="collapseCollection" class="collapse show"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Media</h6>
+                    <a class="collapse-item {% if app.request.get('_route') == 'game_overview' %}active{% endif %}" href="{{ path('game_overview') }}">Games</a>
+                    <a class="collapse-item {% if app.request.get('_route') == 'movie_overview' %}active{% endif %}" href="#">Movies</a>
+                    <a class="collapse-item {% if app.request.get('_route') == 'serie_overview' %}active{% endif %}" href="#">Series</a>
+                    <a class="collapse-item {% if app.request.get('_route') == 'manga_overview' %}active{% endif %}" href="#">Mangas</a>
+                    <h6 class="collapse-header">Other</h6>
+                    <a class="collapse-item {% if app.request.get('_route') == 'console_overview' %}active{% endif %}" href="#">Consoles</a>
+                    <a class="collapse-item {% if app.request.get('_route') == 'collectible_overview' %}active{% endif %}" href="#">Collectibles</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Retro Items Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRetro"
+               aria-expanded="true" aria-controls="collapseRetro">
+                <i class="fas fa-fw fa-book"></i>
+                <span>Retro</span>
+            </a>
+            <div id="collapseRetro" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    {#                                <h6 class="collapse-header"></h6>#}
+                    <a class="collapse-item" href="#">Board games</a>
+                    <a class="collapse-item" href="#">Books</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Extra
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseExploration"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Explore</span>
+            </a>
+            <div id="collapseExploration" class="collapse" aria-labelledby="headingPages"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Everyone</h6>
+                    <a class="collapse-item" href="#">Users</a>
+                    <a class="collapse-item" href="#">Publishers</a>
+                    <a class="collapse-item" href="#">Tags</a>
+                    {#                                <div class="collapse-divider"></div>#}
+                    {#                                <h6 class="collapse-header">Other</h6>#}
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+{% endblock %}
