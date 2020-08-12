@@ -20,7 +20,7 @@
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
-<body id="page-top">
+<body id="page-top" class="{% if is_granted('IS_AUTHENTICATED_REMEMBERED') and app.user.userSetting.darkMode %}dark-mode{% endif %}">
 
 {% block body %}
 
@@ -219,7 +219,7 @@
                                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                             Profile
                                         </a>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="{{ path('setting') }}">
                                             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                             Settings
                                         </a>
