@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class GameController extends AbstractController
 {
@@ -60,7 +61,7 @@ class GameController extends AbstractController
             return $this->redirectToRoute('game_overview');
         }
 
-        return $this->render('form.html.twig', [
+        return $this->render('game/form.html.twig', [
             'gameForm' => $gameForm->createView(),
         ]);
     }
@@ -82,8 +83,28 @@ class GameController extends AbstractController
             return $this->redirectToRoute('game_overview');
         }
 
-        return $this->render('form.html.twig', [
+        return $this->render('game/form.html.twig', [
             'gameForm' => $gameForm->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/games/delete/{game}", name="game_delete")
+     * @param Game $game
+     * @return Response
+     */
+    public function delete(Game $game): Response
+    {
+        $this->denyAccessUnlessGranted(AuthenticatedVoter::IS_AUTHENTICATED_REMEMBERED);
+        /** @var User $user */
+        $user = $this->getUser();
+        // Only the current user's games may be deleted
+        if ($game->getUser() !== $user) {
+            throw new AccessDeniedException();
+        }
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($game);
+        $entityManager->flush();
+        return $this->redirectToRoute('game_overview');
     }
 }

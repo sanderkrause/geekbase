@@ -128,9 +128,14 @@
                             </td>
                             <td>{{ game.condition }}</td>
                             <td>
-                                <a href="{{ path('game_edit', {game:game.id}) }}" class="btn btn-secondary">
-                                    <i class="fas fa-pen"></i>
-                                </a>
+                                <div class="btn-group">
+                                    <a href="{{ path('game_edit', {game:game.id}) }}" class="btn btn-secondary">
+                                        <i class="fa fa-pen"></i>
+                                    </a>
+                                    <a href="{{ path('game_delete', {game:game.id}) }}" class="btn btn-danger">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     {% endfor %}
