@@ -6,12 +6,12 @@ use App\Entity\Game;
 use App\Entity\User;
 use App\Form\GameFormType;
 use App\Repository\GameRepository;
+use App\Security\Voter\PrivateEntityVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class GameController extends AbstractController
 {
@@ -54,7 +54,9 @@ class GameController extends AbstractController
         if ($gameForm->isSubmitted() && $gameForm->isValid()) {
             /** @var Game $game */
             $game = $gameForm->getData();
-            $game->setUser($this->getUser());
+            /** @var User $user */
+            $user = $this->getUser();
+            $game->setUser($user);
             $this->getDoctrine()->getManager()->persist($game);
             $this->getDoctrine()->getManager()->flush();
 
@@ -74,7 +76,7 @@ class GameController extends AbstractController
      */
     public function edit(Request $request, Game $game): Response
     {
-        $this->denyAccessUnlessGranted(AuthenticatedVoter::IS_AUTHENTICATED_REMEMBERED);
+        $this->denyAccessUnlessGranted(PrivateEntityVoter::EDIT, $game);
         $gameForm = $this->createForm(GameFormType::class, $game);
         $gameForm->handleRequest($request);
         if ($gameForm->isSubmitted() && $gameForm->isValid()) {
@@ -95,13 +97,7 @@ class GameController extends AbstractController
      */
     public function delete(Game $game): Response
     {
-        $this->denyAccessUnlessGranted(AuthenticatedVoter::IS_AUTHENTICATED_REMEMBERED);
-        /** @var User $user */
-        $user = $this->getUser();
-        // Only the current user's games may be deleted
-        if ($game->getUser() !== $user) {
-            throw new AccessDeniedException();
-        }
+        $this->denyAccessUnlessGranted(PrivateEntityVoter::REMOVE, $game);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($game);
         $entityManager->flush();
