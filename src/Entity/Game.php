@@ -211,4 +211,13 @@ class Game
 
         return $this;
     }
+
+    public function getReleaseYear(): ?string
+    {
+        $publishingDate = $this->getPublishingDate();
+        if ($publishingDate !== null) {
+            return $publishingDate->format('Y');
+        }
+        return null;
+    }
 }

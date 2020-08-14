@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Genre;
 use App\Entity\User;
 use App\Repository\GenreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,6 +26,19 @@ class GenreController extends AbstractController
         return $this->render('genre/index.html.twig', [
             'userGenres' => $userGenres ?? [],
             'genres' => $repository->getSortedGenres('name'),
+        ]);
+    }
+
+    /**
+     * @Route("/genre/{genre}", name="genre_detail")
+     * @param Genre $genre
+     * @return Response
+     */
+    public function listGames(Genre $genre): Response
+    {
+        return $this->render('genre/detail.html.twig', [
+            'genre' => $genre,
+            'games' => $genre->getGames(),
         ]);
     }
 }

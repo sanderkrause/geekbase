@@ -58,7 +58,11 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="h5 mb-0 font-weight-bold text-secondary">{{ genre.name }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-secondary">
+                                    <a href="{{ path('genre_detail', {genre:genre.id}) }}">
+                                        {{ genre.name }}
+                                    </a>
+                                </div>
                             </div>
                             <div class="col-auto">
                                 {{ genre.games|length }}
