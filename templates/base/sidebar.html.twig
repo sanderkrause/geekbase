@@ -83,7 +83,7 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        {% set show_explore_nav = app.request.get('_route') in ['genre_overview',] %}
+        {% set show_explore_nav = app.request.get('_route') in ['genre_overview', 'genre_detail'] %}
         <li class="nav-item {% if show_explore_nav %}active{% endif %}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseExploration"
                aria-expanded="true" aria-controls="collapsePages">
@@ -98,7 +98,7 @@
                     <a class="collapse-item" href="#">Users</a>
                     <a class="collapse-item" href="#">Publishers</a>
                     <a class="collapse-item" href="#">Tags</a>
-                    <a class="collapse-item {% if app.request.get('_route') == 'genre_overview' %}active{% endif %}"
+                    <a class="collapse-item {% if app.request.get('_route') in ['genre_overview', 'genre_detail'] %}active{% endif %}"
                        href="{{ path('genre_overview') }}">Genres</a>
                     {# <div class="collapse-divider"></div> #}
                     {# <h6 class="collapse-header">Other</h6> #}
