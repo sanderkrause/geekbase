@@ -29,23 +29,30 @@
         </div>
 
         <!-- Nav Item - Collection Collapse Menu -->
-        <li class="nav-item {% if app.request.get('_route') in ['game_overview', 'movie_overview', 'serie_overview', 'manga_overview', 'console_overview', 'collectible_overview'] %}active{% endif %}">
+        {% set show_media_nav = app.request.get('_route') in ['game_overview', 'movie_overview', 'serie_overview', 'manga_overview', 'console_overview', 'collectible_overview'] %}
+        <li class="nav-item {% if show_media_nav %}active{% endif %}">
             <a class="nav-link show" href="#" data-toggle="collapse" data-target="#collapseCollection"
                aria-expanded="true" aria-controls="collapseCollection">
                 <i class="fas fa-fw fa-tv"></i>
                 <span>Media</span>
             </a>
-            <div id="collapseCollection" class="collapse show"
+            <div id="collapseCollection" class="collapse {% if show_media_nav %}show{% endif %}"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Media</h6>
-                    <a class="collapse-item {% if app.request.get('_route') == 'game_overview' %}active{% endif %}" href="{{ path('game_overview') }}">Games</a>
-                    <a class="collapse-item {% if app.request.get('_route') == 'movie_overview' %}active{% endif %}" href="#">Movies</a>
-                    <a class="collapse-item {% if app.request.get('_route') == 'serie_overview' %}active{% endif %}" href="#">Series</a>
-                    <a class="collapse-item {% if app.request.get('_route') == 'manga_overview' %}active{% endif %}" href="#">Mangas</a>
+                    <a class="collapse-item {% if app.request.get('_route') == 'game_overview' %}active{% endif %}"
+                       href="{{ path('game_overview') }}">Games</a>
+                    <a class="collapse-item {% if app.request.get('_route') == 'movie_overview' %}active{% endif %}"
+                       href="#">Movies</a>
+                    <a class="collapse-item {% if app.request.get('_route') == 'serie_overview' %}active{% endif %}"
+                       href="#">Series</a>
+                    <a class="collapse-item {% if app.request.get('_route') == 'manga_overview' %}active{% endif %}"
+                       href="#">Mangas</a>
                     <h6 class="collapse-header">Other</h6>
-                    <a class="collapse-item {% if app.request.get('_route') == 'console_overview' %}active{% endif %}" href="#">Consoles</a>
-                    <a class="collapse-item {% if app.request.get('_route') == 'collectible_overview' %}active{% endif %}" href="#">Collectibles</a>
+                    <a class="collapse-item {% if app.request.get('_route') == 'console_overview' %}active{% endif %}"
+                       href="#">Consoles</a>
+                    <a class="collapse-item {% if app.request.get('_route') == 'collectible_overview' %}active{% endif %}"
+                       href="#">Collectibles</a>
                 </div>
             </div>
         </li>
@@ -76,21 +83,25 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        {% set show_explore_nav = app.request.get('_route') in ['genre_overview',] %}
+        <li class="nav-item {% if show_explore_nav %}active{% endif %}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseExploration"
                aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Explore</span>
             </a>
-            <div id="collapseExploration" class="collapse" aria-labelledby="headingPages"
+            <div id="collapseExploration" class="collapse {% if show_explore_nav %}show{% endif %}"
+                 aria-labelledby="headingPages"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Everyone</h6>
                     <a class="collapse-item" href="#">Users</a>
                     <a class="collapse-item" href="#">Publishers</a>
                     <a class="collapse-item" href="#">Tags</a>
-                    {#                                <div class="collapse-divider"></div>#}
-                    {#                                <h6 class="collapse-header">Other</h6>#}
+                    <a class="collapse-item {% if app.request.get('_route') == 'genre_overview' %}active{% endif %}"
+                       href="{{ path('genre_overview') }}">Genres</a>
+                    {# <div class="collapse-divider"></div> #}
+                    {# <h6 class="collapse-header">Other</h6> #}
                 </div>
             </div>
         </li>
