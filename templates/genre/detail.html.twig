@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <h1 class="h3 mb-2 text-gray-800">{{ genre.name }}</h1>
+
+    <div class="row">
+        {# Start row #}
+        {% for game in games %}
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="h5 mb-0 font-weight-bold text-secondary">
+                                    {# TODO go to game detail view when it is built #}
+                                    <a href="{{ path('game_overview') }}">{{ game.title }}</a>&nbsp;({{ game.releaseYear }})
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                Owned by {{ game.user.username }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {# End row #}
+    </div>
+
+{% endblock %}
