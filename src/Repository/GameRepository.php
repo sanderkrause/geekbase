@@ -59,22 +59,23 @@ class GameRepository extends ServiceEntityRepository
         return $genres;
     }
 
-    public function countSpecialEditions(User $user)
+    public function countSpecialEditions(User $user): int
     {
         $query = $this->createQueryBuilder('g')
-            ->select('count(distinct g.publisher)')
+            ->select('count(g)')
+            ->andWhere('g.special_edition = 1')
             ->andWhere('g.user = :user')
             ->setParameter(':user', $user->getId())
             ->getQuery();
 
         try {
-            $publishers = (int)$query->getSingleScalarResult();
+            $specialEditionCount = (int)$query->getSingleScalarResult();
         } catch (NoResultException $e) {
-            $publishers = 0;
+            $specialEditionCount = 0;
         } catch (NonUniqueResultException $e) {
-            $publishers = 0;
+            $specialEditionCount = 0;
         }
-        return $publishers;
+        return $specialEditionCount;
     }
 
     // /**
