@@ -20,7 +20,6 @@ class GameFormType extends AbstractType
     {
         $builder
             ->add('title')
-//            ->add('genre')
             ->add('genre', AutoCompleteType::class, [
                 'class' => Genre::class,
                 'multiple' => true,
