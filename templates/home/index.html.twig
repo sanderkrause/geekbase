@@ -1,5 +1,188 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1 class="h3 mb-4 text-gray-800">Landing page</h1>
+    <h1 class="h3 mb-4 text-gray-800">Geekbase</h1>
+
+    <div class="card shadow mb-4">
+
+        <div class="col-12 m-2">
+            <p>Join us!</p>
+
+            <p>Lucas ipsum dolor sit amet padmé obi-wan lars organa boba fett yavin calamari solo mon. Jade jinn skywalker jango ewok qui-gon tusken raider. Moff obi-wan k-3po yavin calrissian greedo darth. Mustafar organa dagobah twi'lek amidala. Grievous skywalker moff thrawn. Utapau solo maul palpatine. Organa jade coruscant antilles yavin moff solo. Skywalker maul maul aayla maul owen. Jade wedge solo baba maul windu. Moff mace mace darth skywalker. Kenobi wedge jar organa fisto. Sidious sidious amidala darth wedge naboo organa darth fett.</p>
+            <p>Anakin darth wicket mandalorians skywalker mothma endor calrissian. Tatooine dantooine darth moff mustafar droid moff darth padmé. Yavin antilles darth sith wookiee calamari dagobah ben jabba. Jawa darth kessel ewok jabba mustafar mon tatooine. Palpatine maul luuke luke r2-d2 endor moff antilles yavin. Antilles hutt anakin utapau. C-3po mandalore antilles antilles gamorrean antilles. Han wicket yoda ewok kessel calamari mustafar tatooine. Skywalker jabba kamino twi'lek. Chewbacca organa ventress k-3po.</p>
+            <p>Hoth yavin skywalker darth dooku k-3po kenobi. Thrawn jango hoth hutt. Antilles yoda wedge qui-gonn c-3po organa bespin. Boba wicket cade mara. Yoda padmé darth kenobi padmé. Hutt c-3p0 twi'lek wampa k-3po ponda owen. Wampa yoda boba skywalker hutt leia padmé. Sidious fisto yavin darth dantooine c-3p0 organa dooku. Sidious sidious tatooine amidala mandalorians hutt cade. Calrissian jinn darth calamari ewok fett mon vader. Ventress fisto calamari solo owen. Lobot lobot kessel wampa palpatine organa jawa c-3po.</p>
+            <p>Tusken raider mothma kenobi utapau skywalker c-3po han watto sidious. Darth palpatine darth mara. Mon obi-wan dagobah hutt luuke utapau mandalore. Mace dantooine yavin owen utapau. Mon moff mace tatooine darth moff. Dooku alderaan bespin solo antilles. Moff ben ackbar sidious skywalker grievous leia ben jawa. Kessel ventress qui-gon organa solo kenobi ventress jade windu. Droid moff dooku sebulba jar solo owen hutt. Yavin bothan chewbacca jango kenobi. R2-d2 kashyyyk dagobah lars padmé jinn ackbar moff.</p>
+            <p>Fett droid c-3p0 grievous lobot. Obi-wan calrissian antilles maul kenobi darth moff moff. Mothma skywalker solo cade jinn ventress sith. Windu darth dagobah fett wicket darth. Padmé luke alderaan dooku. Calrissian hutt chewbacca mace. R2-d2 wedge bespin qui-gonn darth fett skywalker binks ponda. Wookiee yavin dantooine hutt darth mothma moff ackbar kessel. Calrissian antilles solo yavin darth twi'lek zabrak. Chewbacca solo k-3po mace jango watto. Moff mon yavin baba skywalker gamorrean. Antilles wookiee mon darth solo mon wicket tatooine.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Register an account or log in</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <a href="{{ path('app_register') }}" class="btn btn-block btn-primary">
+                                    <i class="fas fa-user-plus fa-2x"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1"># of Users</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totalUsers }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user-friends fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1"># of Genres</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totalGenres }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-tags fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"># of Publishers</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totalPublishers }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-truck fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1"># of games</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totalGames }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-compact-disc fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"># of Movies</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totalMovies }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-video-camera fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"># of Series</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totalSeries }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-film fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"># of Mangas</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totalMangas }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-book-open fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"># of Books</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totalBooks }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-book fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"># of Board Games</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ totalBoardGames }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-chess fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}
