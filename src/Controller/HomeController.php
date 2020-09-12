@@ -34,25 +34,16 @@ class HomeController extends AbstractController
      */
     public function index(GameRepository $gameRepository, UserRepository $userRepository, MovieRepository $movieRepository, SerieRepository $serieRepository, BookRepository $bookRepository, BoardGameRepository $boardGameRepository, MangaRepository $mangaRepository, GenreRepository $genreRepository, PublisherRepository $publisherRepository): Response
     {
-        $totalGames = $gameRepository->count([]);
-        $totalUsers = $userRepository->count([]);
-        $totalMovies = $movieRepository->count([]);
-        $totalSeries = $serieRepository->count([]);
-        $totalBooks = $bookRepository->count([]);
-        $totalMangas = $mangaRepository->count([]);
-        $totalBoardGames = $boardGameRepository->count([]);
-        $totalGenres = $genreRepository->count([]);
-        $totalPublishers = $publisherRepository->count([]);
         return $this->render('home/index.html.twig', [
-            'totalGames' => $totalGames,
-            'totalUsers' => $totalUsers,
-            'totalMovies' => $totalMovies,
-            'totalSeries' => $totalSeries,
-            'totalBooks' => $totalBooks,
-            'totalMangas' => $totalMangas,
-            'totalBoardGames' => $totalBoardGames,
-            'totalGenres' => $totalGenres,
-            'totalPublishers' => $totalPublishers,
+            'totalGames' => $gameRepository->count([]),
+            'totalUsers' => $userRepository->count([]),
+            'totalMovies' => $movieRepository->count([]),
+            'totalSeries' => $serieRepository->count([]),
+            'totalBooks' => $bookRepository->count([]),
+            'totalMangas' => $mangaRepository->count([]),
+            'totalBoardGames' => $boardGameRepository->count([]),
+            'totalGenres' => $genreRepository->count([]),
+            'totalPublishers' => $publisherRepository->count([]),
         ]);
     }
 
