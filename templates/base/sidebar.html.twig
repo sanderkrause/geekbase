@@ -29,9 +29,9 @@
         </div>
 
         <!-- Nav Item - Collection Collapse Menu -->
-        {% set show_media_nav = app.request.get('_route') in ['game_overview', 'movie_overview', 'serie_overview', 'manga_overview', 'console_overview', 'collectible_overview'] %}
+        {% set show_media_nav = app.request.get('_route') in ['game_overview', 'movie_overview', 'serie_overview', 'console_overview', 'collectible_overview'] %}
         <li class="nav-item {% if show_media_nav %}active{% endif %}">
-            <a class="nav-link show" href="#" data-toggle="collapse" data-target="#collapseCollection"
+            <a class="nav-link {% if show_media_nav %}show{% endif %}" href="#" data-toggle="collapse" data-target="#collapseCollection"
                aria-expanded="true" aria-controls="collapseCollection">
                 <i class="fas fa-fw fa-tv"></i>
                 <span>Media</span>
@@ -46,8 +46,6 @@
                        href="#">Movies</a>
                     <a class="collapse-item {% if app.request.get('_route') == 'serie_overview' %}active{% endif %}"
                        href="#">Series</a>
-                    <a class="collapse-item {% if app.request.get('_route') == 'manga_overview' %}active{% endif %}"
-                       href="#">Mangas</a>
                     <h6 class="collapse-header">Other</h6>
                     <a class="collapse-item {% if app.request.get('_route') == 'console_overview' %}active{% endif %}"
                        href="#">Consoles</a>
@@ -58,7 +56,8 @@
         </li>
 
         <!-- Nav Item - Retro Items Collapse Menu -->
-        <li class="nav-item">
+        {% set show_retro_nav = app.request.get('_route') in ['manga_overview', 'book_overview', 'boardgame_overview'] %}
+        <li class="nav-item {% if show_retro_nav %}active{% endif %}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRetro"
                aria-expanded="true" aria-controls="collapseRetro">
                 <i class="fas fa-fw fa-book"></i>
@@ -67,9 +66,10 @@
             <div id="collapseRetro" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    {#                                <h6 class="collapse-header"></h6>#}
                     <a class="collapse-item" href="#">Board games</a>
                     <a class="collapse-item" href="#">Books</a>
+                    <a class="collapse-item {% if app.request.get('_route') == 'manga_overview' %}active{% endif %}"
+                       href="#">Mangas</a>
                 </div>
             </div>
         </li>
