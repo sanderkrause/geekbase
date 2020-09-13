@@ -3,7 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Movie;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +22,40 @@ class MovieRepository extends ServiceEntityRepository
         parent::__construct($registry, Movie::class);
     }
 
-    // /**
-    //  * @return Movie[] Returns an array of Movie objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function countUserMovies(User $user): int
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $query = $this->createQueryBuilder('m')
+            ->select('count(m)')
+            ->where('m.user = :user')
+            ->setParameter(':user', $user->getId())
+            ->getQuery();
 
-    /*
-    public function findOneBySomeField($value): ?Movie
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        try {
+            $count = (int)$query->getSingleScalarResult();
+        } catch (NoResultException $e) {
+            $count = 0;
+        } catch (NonUniqueResultException $e) {
+            $count = 0;
+        }
+        return $count;
     }
-    */
+
+    public function countUniqueGenres(User $user): int
+    {
+        $query = $this->createQueryBuilder('n')
+            ->select('count(distinct genres)')
+            ->andWhere('m.user = :user')
+            ->setParameter(':user', $user->getId())
+            ->leftJoin('m.genre', 'genres')
+            ->getQuery();
+
+        try {
+            $genres = (int)$query->getSingleScalarResult();
+        } catch (NoResultException $e) {
+            $genres = 0;
+        } catch (NonUniqueResultException $e) {
+            $genres = 0;
+        }
+        return $genres;
+    }
 }

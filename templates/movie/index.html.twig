@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <h1 class="h3 mb-2 text-gray-800">Your movie collection</h1>
+
+    <div class="row">
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Add movie to your collection</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <a href="#" class="btn btn-block btn-primary">
+                                    <i class="fas fa-plus fa-2x"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1"># of movies in your collection</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ numMovies }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-compact-disc fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Unique genres</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ numGenres }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-bars fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        {#        <div class="card-header py-3">#}
+        {#            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>#}
+        {#        </div>#}
+        <div class="card-body">
+            <div class="">
+                <table class="table table-bordered border-primary rounded" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="bg-primary text-white">
+                    <tr>
+                        <th>Title</th>
+                        <th>Release year</th>
+                        <th>Media</th>
+                        <th>Genres</th>
+                        <th>Condition</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for movie in movies %}
+                        <tr>
+                            <td>{{ movie.title }}</td>
+                            <td>{{ movie.releaseYear }}</td>
+                            <td>{{ movie.mediaType }}</td>
+                            <td>{{ movie.genre|join(', ') }}</td>
+                            <td>{{ movie.condition }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-secondary">
+                                        <i class="fa fa-pen"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-danger">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

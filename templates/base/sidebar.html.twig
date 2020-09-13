@@ -43,7 +43,7 @@
                     <a class="collapse-item {% if app.request.get('_route') == 'game_overview' %}active{% endif %}"
                        href="{{ path('game_overview') }}">Games</a>
                     <a class="collapse-item {% if app.request.get('_route') == 'movie_overview' %}active{% endif %}"
-                       href="#">Movies</a>
+                       href="{{ path('movie_overview') }}">Movies</a>
                     <a class="collapse-item {% if app.request.get('_route') == 'serie_overview' %}active{% endif %}"
                        href="#">Series</a>
                     <h6 class="collapse-header">Other</h6>
