@@ -50,6 +50,12 @@ class Movie
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=MediaType::class, inversedBy="movies")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $media_type;
+
     public function __construct()
     {
         $this->genre = new ArrayCollection();
@@ -142,6 +148,18 @@ class Movie
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getMediaType(): ?MediaType
+    {
+        return $this->media_type;
+    }
+
+    public function setMediaType(?MediaType $media_type): self
+    {
+        $this->media_type = $media_type;
 
         return $this;
     }

@@ -67,6 +67,7 @@
                     <tr>
                         <th>Title</th>
                         <th>Release year</th>
+                        <th>Media</th>
                         <th>Genres</th>
                         <th>Condition</th>
                         <th>Actions</th>
@@ -77,6 +78,7 @@
                         <tr>
                             <td>{{ movie.title }}</td>
                             <td>{{ movie.releaseYear }}</td>
+                            <td>{{ movie.mediaType }}</td>
                             <td>{{ movie.genre|join(', ') }}</td>
                             <td>{{ movie.condition }}</td>
                             <td>
