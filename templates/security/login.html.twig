@@ -33,6 +33,9 @@
                                                required>
                                     </div>
 
+                                    <input type="checkbox" id="remember_me" name="_remember_me" checked/>
+                                    <label for="remember_me">Keep me logged in</label>
+
                                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                                     <button class="btn btn-primary btn-user btn-block" type="submit">
